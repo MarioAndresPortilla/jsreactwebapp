@@ -4,8 +4,8 @@ import Header from "./Header";
 import AddContact from './AddContact';
 import ContactList from './ContactList';
 import { v4 as uuid } from 'uuid';
-import { BrowserRouter as Router, Switch, Route, Routes} from "react-router-dom";
-
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import ContactDetail from "./ContactDetail";
 
 function App() {
     const LOCAL_STORAGE_KEY = "contacts";
@@ -43,14 +43,13 @@ function App() {
             <Routes>
                 <Route
                     path="/"
-
                     element={
                         <ContactList
                             contacts={contacts}
                             getContactId={removeContactHandler}
                         />
-                        }
-                    />
+                    }
+                />
                 <Route
                     path="/add"
                     element={
@@ -58,7 +57,11 @@ function App() {
                         addContactHandler={addContactHandler}
                     />
                     }
-            />
+                />
+                <Route path="/contact/:id"
+                       element={
+                    <ContactDetail/>} />
+
             </Routes>
 
           {/*<AddContact addContactHandler={addContactHandler} />*/}
