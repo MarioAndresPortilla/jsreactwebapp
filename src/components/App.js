@@ -43,11 +43,22 @@ function App() {
             <Routes>
                 <Route
                     path="/"
-                    element={<ContactList/>} />
+
+                    element={
+                        <ContactList
+                            contacts={contacts}
+                            getContactId={removeContactHandler}
+                        />
+                        }
+                    />
                 <Route
                     path="/add"
                     element={
-                    <AddContact/>} />
+                    <AddContact
+                        addContactHandler={addContactHandler}
+                    />
+                    }
+            />
             </Routes>
 
           {/*<AddContact addContactHandler={addContactHandler} />*/}
