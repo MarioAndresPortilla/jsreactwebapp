@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useRef, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import ContactCard from "./ContactCard";
+import {useContactsCrud} from "../context/ContactsCrudContext";
 
 
 const ContactList = (props) => {
-    console.log(props);
-
-        const deleteContactHandler = (id) => {
-            props.getContactId(id);
-        };
+        const {contacts, retrieveContacts} = useContactsCrud();
+        const inputEl = useRef("");
 
 
-    const renderContactList = props.contacts.map((contact) => {
+    useEffect(() => {
+
+    },[]);
+
+    const renderContactList = contacts.map((contact) => {
         return (
             <ContactCard
                 contact={contact}
-                clickHandler={deleteContactHandler}
                 key={contact.id}
             />
         );
     });
+
+    const getSearchTerm = () => {
+        props.searchKeyword(inputEl.current.value);
+    }
+
+
     return (
         <div class="main">
             <h2>
